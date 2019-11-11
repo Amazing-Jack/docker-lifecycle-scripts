@@ -71,6 +71,10 @@ cd configArt
 jfrog rt config --url=$DOCKER_ART_URL --user=admin --password=password --interactive=false
 jfrog rt cp apache-archive-cache/tomcat/tomcat-8/v8.0.32/bin/apache-tomcat-8.0.32.tar.gz tomcat-local/org/apache/apache-tomcat/apache-tomcat-8.0.32.tar.gz
 
+# https://www.jfrog.com/confluence/display/CLI/CLI+for+JFrog+Artifactory
+jfrog rt u apache-tomcat-8.5.5.tar.gz tomcat-local/org/apache/apache-tomcat/apache-tomcat-8.5.5.tar.gz --build-name=my-build-name --build-number=1 --recursive=false
+jfrog rt u jdk-8u91-linux-x64.tar.gz tomcat-local/java/jdk-8u91-linux-x64.tar.gz --build-name=my-build-name --build-number=2 --recursive=false
+
 #Step 5: Prime framework release build:
 export BUILD_NUMBER=1
 jfrog rt cp docker-dev-local2/swampup/docker-framework/$BUILD_NUMBER/ docker-prod-local2
@@ -83,4 +87,4 @@ curl -uadmin:password -X POST "$DOCKER_ART_URL/api/plugins/execute/dockerRetag" 
 docker run -d --name test-app2 -p 8181:8181 883d7f53e798
 
 #PROMOTE TOMCAT VERSION:
-jfrog rt cp apache-archive-cache/tomcat/tomcat-8/v8.0.35/bin/apache-tomcat-8.0.35.tar.gz tomcat-local/org/apache/apache-tomcat/pache-tomcat-8.0.35.tar.gz
+jfrog rt cp apache-archive-cache/tomcat/tomcat-8/v8.0.35/bin/apache-tomcat-8.0.35.tar.gz tomcat-local/org/apache/apache-tomcat/apache-tomcat-8.0.35.tar.gz
