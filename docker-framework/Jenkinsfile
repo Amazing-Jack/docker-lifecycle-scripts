@@ -49,7 +49,7 @@ node {
       stage('docker build') {
         buildInfo.env.collect()
         println('starting build '+env.BUILD_NUMBER)
-        def tagName='docker-dev-local2.art.lcoal/docker-framework:'+env.BUILD_NUMBER
+        def tagName='docker-dev-local2.art.local/docker-framework:'+env.BUILD_NUMBER
         sh 'pwd'
         sh 'ls -al'
         sh 'cat Dockerfile'
