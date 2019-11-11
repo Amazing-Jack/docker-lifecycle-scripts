@@ -87,16 +87,17 @@ node {
         def warverstr=curlstr+ "api/search/latestVersion?g=org.jfrog.test&a=multi3&repos=libs-release-local'"
         sh warverstr +' > war/version.txt'
         env.WARVER=readFile('war/version.txt')
+
         def downloadSpecWar = """{
-                                    "files": [
-                                      {
-                                        "pattern": "libs-release-local/org/jfrog/test/multi3/"""+env.WARVER+"""/*.war",
-                                        "target": "war/webservice.war",
-                                        "flat": "true"
-                                      }
-                                      ]
-                                  }""" 
-//"//DownloadSpec
+         "files": [
+          {
+           "pattern": "libs-release-local/org/jfrog/test/multi3/"""+env.WARVER+"""/*.war",
+           "target": "war/webservice.war",
+           "flat":"true"
+          }
+          ]
+        }"""
+        //"//DownloadSpec
         println(downloadSpecWar)
         artServer.download(downloadSpecWar)
         def tagNameTest='docker-dev-local2.art.local/docker-framework-test:'+env.BUILD_NUMBER
