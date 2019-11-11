@@ -1,6 +1,6 @@
 FROM docker-release-local2.art.local/docker-framework:latest
 
-MAINTAINER jackchung@jfrogchina.com
+LABEL authors="Jack Chung"
 
 ADD war/*.war /home/exec/apache-tomcat-8.5.5/webapps/swampup.war
 
