@@ -104,6 +104,7 @@ node {
         sh 'pwd'
         sh 'ls -al'
         sh 'cat Dockerfile'
+        sh 'docker login -u admin -p password docker-dev-local2.art.local'
         docker.build(tagNameTest)
         docker.image(tagNameTest).withRun('-p 8181:8181') {c ->
           sleep 5
