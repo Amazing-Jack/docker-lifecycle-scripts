@@ -17,7 +17,7 @@ node {
       // Mark the code checkout 'stage'....
       sh 'ls -al'
       stage('Resolve') {
-        def tomcatverstr=curlstr+ "api/search/latestVersion?g=org.apache&a=apache-tomcat&repos=tomcat-local'"
+        def tomcatverstr=curlstr+ "api/search/latestVersion?g=org.apache&a=apache-tomcat&repos=tomcat-local"
         println(tomcatverstr)
         sh tomcatverstr+' > tomcat/version.txt'
         env.TOMCAT_VERSION=readFile('tomcat/version.txt')
@@ -84,7 +84,7 @@ node {
     {
       stage('testing') {
         println('Get the latest version of the tomcat war from libs-release-local repo.  We only want war files that have been released')
-        def warverstr=curlstr+ "api/search/latestVersion?g=org.jfrog.test&a=multi3&repos=libs-release-local'"
+        def warverstr=curlstr+ "api/search/latestVersion?g=org.jfrog.test&a=multi3&repos=libs-release-local"
         sh warverstr +' > war/version.txt'
         env.WARVER=readFile('war/version.txt')
 

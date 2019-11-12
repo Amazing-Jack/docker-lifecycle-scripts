@@ -34,7 +34,7 @@ dir('docker-app') {
        def warverstr=curlstr+ "api/search/latestVersion?g=org.jfrog.test&a=multi3&repos=libs-snapshot-local'"
        sh warverstr +' > war/version.txt'
        env.WARVER=readFile('war/version.txt')
-        def downloadSpec = """{
+       def downloadSpec = """{
  "files": [
   {
    "pattern": "libs-snapshot-local/org/jfrog/test/multi3/"""+env.WARVER+"""/*.war",
