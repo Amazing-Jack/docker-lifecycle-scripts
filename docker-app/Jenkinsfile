@@ -81,9 +81,9 @@ def curlstr="curl -u"+uname+':'+pw+" 'http://art.local/artifactory/"
             //sh 'docker rmi '+imageName+' || true'
             //artDocker.pull(imageName)
             //docker.withRegistry('https://jfrogtraining-docker-dev.jfrog.io/', 'art-docker-ci') {
-                docker.image(imageName).withRun('-p 8081:8081') {c ->
+                docker.image(imageName).withRun('-p 8181:8181') {c ->
                     sleep 5
-                    sh 'curl "http://localhost:8081/swampup/"'
+                    sh 'curl "http://localhost:8181/swampup/"'
                 }
             //}
         
