@@ -100,7 +100,7 @@ node {
         //"//DownloadSpec
         println(downloadSpecWar)
         artServer.download(downloadSpecWar)
-        def tagNameTest='http://docker-dev-local2.art.local/docker-framework-test:'+env.BUILD_NUMBER
+        def tagNameTest='docker-dev-local2.art.local/docker-framework-test:'+env.BUILD_NUMBER
         sh 'pwd'
         sh 'ls -al'
         sh 'cat Dockerfile'
