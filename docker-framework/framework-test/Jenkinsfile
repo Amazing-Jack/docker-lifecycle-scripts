@@ -3,15 +3,15 @@ node {
   stage 'Checkout'
 
   // Get some code from a GitHub repository
-  git url: 'https://github.com/lyqwaterway/docker-lifecycle-scripts'
-  def artServer = Artifactory.server('artiha-demo')
-  withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'art-docker-ci', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+  git url: 'https://github.com/Amazing-Jack/docker-lifecycle-scripts.git', branch: 'master', credentialsId: 'Github-Credentials'
+  def artServer = Artifactory.server('Local-Artifactory')
+  withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'Artifactory-Credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
     def uname=env.USERNAME
     def pw=env.PASSWORD
     artServer.username=uname
     artServer.password=pw
     sh 'echo credentials applied'
-    def curlstr="curl -u"+uname+':'+pw+" 'http://beijing.artifactory.com/artifactory/"
+    def curlstr="curl -u"+uname+':'+pw+" 'http://art.local/artifactory/"
     stage 'testing'
     dir('docker-framework/framework-test')
     {
@@ -29,9 +29,9 @@ node {
 }"""
     println(downloadSpecWar)
     artServer.download(downloadSpecWar)
-        def tagNameTest='beijing.artifactory.com:5002/docker-framework-test:'+env.BUILD_NUMBER
+        def tagNameTest='art.lcoal/docker-framework-test:'+env.BUILD_NUMBER
         docker.build(tagNameTest)
-withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'gcart-markg',
+withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'Art-Docker-Credentials',
 usernameVariable: 'GCUSERNAME', passwordVariable: 'GCPASSWORD']]) { 
     gcuname=env.GCUSERNAME
     gcpw=env.GCPASSWORD
