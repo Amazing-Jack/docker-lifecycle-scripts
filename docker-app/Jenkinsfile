@@ -4,7 +4,7 @@ node {
   artServer.credentialsId='Artifactory-Credentials'
   def buildInfo = Artifactory.newBuildInfo()
   stage('Checkout MAVEN')
-  git url: 'git@github.com:Amazing-Jack/project-examples.git', branch: 'master', credentialsId: 'Github-Credentials'
+  git url: 'https://github.com/Amazing-Jack/project-examples.git', branch: 'master', credentialsId: 'Github-Credentials'
   
   stage('Build Maven')
   def rtMaven = Artifactory.newMavenBuild()
