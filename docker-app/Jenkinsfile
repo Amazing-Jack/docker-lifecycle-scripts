@@ -3,10 +3,10 @@ node {
   def artServer = Artifactory.server('Local-Artifactory')
   artServer.credentialsId='Artifactory-Credentials'
   def buildInfo = Artifactory.newBuildInfo()
-  stage 'Checkout MAVEN'
-  git url: 'git@github.com:Amazing-Jack/project-examples.git', credentialsId: 'Github-Credentials'
+  stage('Checkout MAVEN')
+  git url: 'git@github.com:Amazing-Jack/project-examples.git', branch: 'master', credentialsId: 'Github-Credentials'
   
-  stage 'Build Maven'
+  stage('Build Maven')
   def rtMaven = Artifactory.newMavenBuild()
   
   rtMaven.resolver server: artServer, releaseRepo: 'libs-release', snapshotRepo: 'libs-snapshot'
