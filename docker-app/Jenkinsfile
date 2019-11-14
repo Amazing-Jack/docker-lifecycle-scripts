@@ -49,6 +49,7 @@ node {
             }
             stage('Build and Deploy') {
                     def tagName='docker-dev-local2.art.local/docker-app:'+env.BUILD_NUMBER
+                    sh 'docker login -u admin -p password docker-dev-local2.art.local'
                     docker.build(tagName)
                     def artDocker= Artifactory.docker server: artServer
                     buildInfo = artDocker.push(tagName, 'docker-dev-local2')
