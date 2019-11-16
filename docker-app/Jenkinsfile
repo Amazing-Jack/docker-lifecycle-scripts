@@ -130,7 +130,7 @@ usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
             {
             
             println("deploy app")
-            def aqlSearch = curlstr+"api/search/aql' -X POST -T aql.json";
+            def aqlSearch = curlstr+"api/search/aql' -X POST -T find-item.aql";
             println(aqlSearch)
             sh aqlSearch;
             
